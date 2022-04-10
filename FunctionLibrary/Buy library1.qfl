@@ -1,0 +1,44 @@
+﻿Function OpenURL()
+'Environment used here
+systemutil.Run(Environment("Buy"))
+End Function
+
+Function BuyOption()
+'GetROProperty is used here
+width=Browser("Real Estate | Property").Page("Real Estate | Property").Link("Kolkata").GetRoProperty("name")
+msgbox width
+Browser("Real Estate | Property").Page("Real Estate | Property").Link("Kolkata").Click
+Browser("Real Estate | Property").Page("Real Estate | Property_2").WebElement("Search").Click
+
+'Descriptive programing used here
+'If Browser("Real Estate | Property").Page("Real Estate | Property_2").WebElement("Search").Exist then
+'msgbox "Descriptive programing identify"
+'Else 
+'msgbox"Descriptive programing is not  identify"
+'End If
+End Function
+
+Function RatesTrend()
+
+Browser("Real Estate | Property").Page("2 BHK Flats in Kolkata,").Link("Buy").Click
+'Synchronisation point is used here
+'Browser("Real Estate | Property").Page("2 BHK Flats in Kolkata,").Link("Buy").WaitProperty "text", "True", 10000
+wait(10)
+Browser("Real Estate | Property").Page("2 BHK Flats in Kolkata,").Link("Rates & Trends").Click
+'Check point is used here
+Browser("Property Rates in Kolkata,").Page("Property Rates in Kolkata,").WebElement("WebElement").Check CheckPoint("WebElement")
+Browser("Property Rates in Kolkata,").Page("Property Rates in Kolkata,").Link("Projects").Click
+Browser("Property Rates in Kolkata,").Page("Property Rates in Kolkata,").Sync
+
+
+End Function
+
+Function Closetab()
+Browser("Property Rates in Kolkata").Close
+If Browser("Property Rates in Kolkata").Exist(10) Then
+    Reporter.ReportEvent  micWarning, "Closetab","Closewindow unSuccessful"
+    else
+    Reporter.ReportEvent micPass,"Closetab","Closewindow unSuccessful"
+End If
+
+End Function
